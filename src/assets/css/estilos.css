@@ -1,0 +1,133 @@
+#foot{
+    margin-top: auto ;
+}
+
+body{
+    min-height: 100vh;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#root{
+    min-height: 100vh!important;
+}
+
+#card{
+    max-width: 25rem;
+    background: linear-gradient(180deg, #2270af30 25%, #2270af75 50%, #2270af90 65%);
+    margin-left: 8rem;
+    height: 500px;
+    border: none;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    width: 85%;
+}
+
+.grid-item{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.tb::-webkit-scrollbar{
+    background: whitesmoke;
+    border-radius: 15px;
+    width: 10px;
+}
+
+.tb::-webkit-scrollbar-thumb{
+    background: rgb(200, 200, 200);
+    border-radius: 15px;
+}
+
+.tb::-webkit-scrollbar-thumb:hover{
+    background: rgb(175, 175, 175);
+}
+
+.nav-container{
+    background: white !important;
+}
+
+.container-content{
+    height: 600px;
+    width: 100%;
+    background-image: url(
+        http://localhost:3000/leasing.jpg
+    );
+}
+
+#sesion{
+    background-color: #00b2fb;
+}
+
+a{
+    text-decoration: none;
+}
+
+.menu a:hover{
+   background: rgb(185, 185, 185);
+}
+
+#sidebar-container{
+    height: 100%;
+}
+
+#sidebar-container .logo{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu{
+    width: 18rem;
+}
+
+.font-weight{
+    font-weight:300;
+}
+
+#tabla{
+    overflow-y: hidden;
+}
+
+#burgerMenu{
+    display: none;
+}
+
+.menuBtn a{
+    width: 160px;
+}
+
+.btnP:hover{
+    background: rgb(0, 0, 0)!important;
+}
+
+@media(max-width:1200px){
+    #logo{
+       height: 55px !important;
+    }
+}
+
+@media(max-width:992px){
+    #sidebar-container{
+        display: none;
+    }
+    #burgerMenu{
+       display: block; 
+    }
+    #logOut{
+        display: none;
+    }
+}
+
+@media(max-width:768px){
+    .menuBtn{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    } 
+}
+
+@media(max-width:576px){
+}
+
