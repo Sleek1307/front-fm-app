@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 import MenuButtons from "../buttons/menuButtonsSale";
-import { CloseCircleOutline } from "react-ionicons";
 
 const RegistrarVenta = () => {
+  const [sale, setSale] = useState({
+    idCostumer: "",
+    date: "",
+  });
   const [rows, setRows] = useState([]);
   const [row, setRow] = useState({
     key: "",
-    idProduct: "",
     nameProduct: "",
     amount: 0,
     unitValue: 0,
     totalValue: 0,
   });
-  const [sale, setSale] = useState({
-    provider: "",
-    date: "",
-  });
-  const [key, setKey] = useState(0)
 
+  // Pendiente por mejorar
   const requireProduct = () => {
-    if (row.idProduct.length === 0) {
-      return false;
-    }
     if (row.nameProduct.length === 0) {
       return false;
     }
@@ -44,27 +39,17 @@ const RegistrarVenta = () => {
     if (rows.length === 0) {
       return false;
     }
-
     return true;
   };
 
   const handleChangeRow = (e) => {
-    if (e.target.name === "nameProduct") {
-      setRow({
-        ...row,
-        [e.target.name]: e.target.value.split("-")[1],
-        idProduct: e.target.value.split("-")[0],
-      });
-    } else {
-      setRow({
-        ...row,
-        [e.target.name]: e.target.value,
-      });
-    }
+    setRow({
+      ...row,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleChangeSale = (e) => {
-    console.log(e);
     setSale({
       ...sale,
       [e.target.name]: e.target.value,
@@ -75,31 +60,37 @@ const RegistrarVenta = () => {
     e.preventDefault();
 
     if (requireProduct()) {
-      const totalValue = row.unitValue * row.amount;
-      setRow({
-        ...row,
-        key: key,
-        totalValue: totalValue,
-      });
+      if (rows.length != 0) {
+        let flag;
+        flag = rows.map((r) => {
+          if (r.nameProduct == row.nameProduct) return true;
+        });
+
+        if (flag[0]) {
+          alert("El producto ya existe en la tabla de ventas");
+          return;
+        }
+        setRow({
+          ...row,
+          key: rows[rows.length - 1].key + 1,
+        });
+      } else {
+        setRow({
+          ...row,
+          key: 1,
+        });
+      }
     }
   };
 
   const deleteProduct = (e) => {
-    let products = rows;
-
-    console.log(products[0])
-    rows.map((row, index) => {
-      console.log(row);
-      if (row.idProduct == e.target.value) {
-        products = products.splice(index, 1)
-        console.log(index)
-      }
-    });
+    let products = rows.filter((row) => row.key != e.target.value);
+    setRows(products);
+    console.log(products);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     if (requireSale()) {
       console.log("No faltan datos de la venta");
       console.log({ products: rows, data: sale });
@@ -109,15 +100,30 @@ const RegistrarVenta = () => {
   };
 
   useEffect(() => {
+    setRow({ ...row, totalValue: row.amount * row.unitValue });
+  }, [row.amount, row.unitValue]);
+
+  useEffect(() => {
     if (requireProduct()) {
       setRows([...rows, row]);
     }
-  }, [row.totalValue]);
+  }, [row.key]);
 
-  useEffect(() => {
-    console.log(rows);
-    setKey(key + 1);
-  }, [rows])
+  // Logica de la venta
+  // if (rows.length > 0) {
+  //     );
+
+  //     if (flag[0]) {
+  //       setRows([...rows, row]);
+  //     } else {
+  //       alert("El producto ya");
+  //     }
+  //   } else {
+  //     if (requireProduct()) {
+  //       setRows([...rows, row]);
+  //     }
+  //   }
+  console.log(row);
 
   return (
     <>
@@ -131,12 +137,12 @@ const RegistrarVenta = () => {
         </div>
 
         <div
-          className="w-50 mb-5 p-3 shadow-lg rounded-3"
+          className="w-75 mb-5 p-3 shadow-lg rounded-3"
           style={{ height: "450px" }}
         >
           <div className="w-100 h-100 d-flex justify-content-center">
             <div className="w-100 overflow-auto border rounded-3 d-flex flex-column align-items-center p-3">
-              <table className="w-100 table table-bordered">
+              <table className="w-100 table table-striped">
                 <thead>
                   <tr className="text-center">
                     <th>#</th>
@@ -144,19 +150,24 @@ const RegistrarVenta = () => {
                     <th>Cantidad</th>
                     <th>Valor unitario</th>
                     <th>Valor total</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                   {rows.map((row) => {
                     return (
-                      <tr>
+                      <tr key={row.key} className="text-center text-truncate">
                         <td>{row.key}</td>
                         <td>{row.nameProduct}</td>
                         <td>{row.amount}</td>
                         <td>{row.unitValue}</td>
                         <td>{row.totalValue}</td>
                         <td>
-                          <button onClick={deleteProduct} value={row.key}>
+                          <button
+                            className=" btn btn-light btn-outline-danger"
+                            onClick={deleteProduct}
+                            value={row.key}
+                          >
                             Eliminar
                           </button>
                         </td>
@@ -178,8 +189,8 @@ const RegistrarVenta = () => {
                           onChange={handleChangeRow}
                         >
                           <option>All</option>
-                          <option value="1-producto1">producto1</option>
-                          <option value="2-producto2">producto2</option>
+                          <option value="001 productoUno">producto1</option>
+                          <option value="002 productoDOs">producto2</option>
                         </select>
                       </div>
 
@@ -220,7 +231,7 @@ const RegistrarVenta = () => {
                   <div className="w-100 d-flex flex-column align-items-center">
                     <div className="w-100 d-flex mb-3">
                       <div className="w-50 px-1">
-                        <label className="form-label">Proveedor:</label>
+                        <label className="form-label">Cliente</label>
                         <select
                           name="provider"
                           className="form-select"
