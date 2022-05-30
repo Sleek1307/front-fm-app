@@ -1,45 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {ClipboardOutline, PersonAdd} from 'react-ionicons'
 
 const ButtonsProvider = () => {
   return (
     <>
-      <div className="d-flex justify-content-between my-4">
-        <div className="col-sm-4 col-12 d-flex justify-content-center menuBtn">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title fw-bolder">Lista de proveedores</h5>
-              <div className="text-center">
-                <ClipboardOutline width={"150px"} height={"150px"} />
-              </div>
-              <hr className="w-100" />
-              <Link
-                to="/proveedores"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Proveedores
-              </Link>
-            </div>
+      <div className="w-100 h-100 p-2 ms-2 border shadow-md rounded-3">
+        <Link to="/proveedores" className="m-0 text-decoration-none text-dark">
+          <div className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3">
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-file-person"></i>
+            <span>Proveedores</span>
           </div>
-        </div>
-        <div className="col-sm-4 col-12 d-flex justify-content-center menuBtn">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title fw-bolder">Registro de proveedores</h5>
-              <div className="text-center">
-                <PersonAdd width={"150px"} height={"150px"} />
-              </div>
-              <hr className="w-100" />
-              <Link
-                to="/proveedor/registro"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Registrar
-              </Link>
-            </div>
+        </Link>
+        <Link
+          to="/proveedores/gestion"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3">
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-person-badge"></i>
+            <span>Gestionar proveedor</span>
           </div>
-        </div>
+        </Link>
+        <Link
+          to="/proveedores/agregar"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3">
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-plus"></i>
+            <span>Nuevo proveedor</span>
+          </div>
+        </Link>
       </div>
     </>
   );

@@ -149,40 +149,51 @@ const SearchCostumer = () => {
 
   return (
     <>
+      <div className="w-100 px-3 d-flex flex-column align-items-center">
+        <h1 className="text-center text-uppercase">gestion de clientes</h1>
+        <div className="d-flex w-100">
+          <div
+            className="p-2 rounded-3 shadow-md mb-1 w-75 d-flex justify-content-center align-items-center border"
+            style={{ height: "475px" }}
+          >
+            <div className="tb rounded-3 border w-75 " style={{height: "420px"}}>
+              <div className="h-25">
+                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                  <div className="row w-100 m-0 border-bottom py-3">
+                    <div className="col-md-2 col-4 d-flex">
+                      <label htmlFor="" className="mx-auto my-auto">
+                        Codigo
+                      </label>
+                    </div>
+                    <div className="col-md-4 col-8">
+                      <input
+                        {...register("idCostumer", { required: true })}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                    <div
+                      id="searchC"
+                      className="col-md-6 col-12 d-flex menuBtn"
+                    >
+                      <button className="btn btnP btn-dark">Buscar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
 
-      <h1 className="text-center mt-4">Gestion de clientes</h1>
-      <div className="w-100">
-        <MenuButtons/>
-      </div>
-      <div
-        className="d-flex justify-content-center w-50 mb-5"
-        style={{ height: "475px" }}
-      >
-        <div className="border p-1 w-75 rounded-3 shadow-lg">
-          <div className="h-25">
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="row w-100 m-0 border-bottom py-3">
-                <div className="col-md-2 col-4 d-flex">
-                  <label htmlFor="" className="mx-auto my-auto">
-                    Codigo
-                  </label>
+              <div className="h-75 w-100 d-flex">
+                <div className="w-50">
+                <Update data={costumers} />
                 </div>
-                <div className="col-md-4 col-8">
-                  <input
-                    {...register("idCostumer", { required: true })}
-                    type="text"
-                    className="form-control"
-                  />
-                </div>
-                <div id="searchC" className="col-md-6 col-12 d-flex menuBtn">
-                  <button className="btn btnP btn-dark">Buscar</button>
+                <div className="w-50 d-flex align-items-center justify-content-center">
+                  <h1 className="text-center">En desarrollo</h1>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-
-          <div className="h-75">
-            <Update data={costumers} />
+          <div className="w-25">
+            <MenuButtons />
           </div>
         </div>
       </div>

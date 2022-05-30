@@ -1,50 +1,12 @@
 import React, { useEffect, useState } from "react";
 import getAllCredits from "../../services/credits.services";
+import MenuCredits from "../buttons/menuButtonsCredits";
+import moment from "moment";
+import "moment/locale/es";
+import { Link } from "react-router-dom";
 
 const Credits = () => {
-  const [credits, setCredit] = useState([
-    // {
-    //   cliente: "John Doe",
-    //   venta: "001",
-    //   credito: "001",
-    //   valor: "5500",
-    //   fecha: "25/03/2022",
-    //   more: "ver mas..",
-    // },
-    // {
-    //   cliente: "Juan Alvarez",
-    //   venta: "003",
-    //   credito: "001",
-    //   valor: "5500",
-    //   fecha: "25/03/2022",
-    //   more: "ver mas..",
-    // },
-    // {
-    //   cliente: "Andrea Carmona",
-    //   venta: "002",
-    //   credito: "001",
-    //   valor: "5500",
-    //   fecha: "25/03/2022",
-    //   more: "ver mas..",
-    // },
-    // {
-    //   cliente: "John Doe",
-    //   venta: "004",
-    //   credito: "001",
-    //   valor: "5500",
-    //   fecha: "25/03/2022",
-    //   more: "ver mas..",
-    // },
-    // {
-    //   cliente: "John Doe",
-    //   venta: "005",
-    //   credito: "001",
-    //   valor: "5500",
-    //   fecha: "25/03/2022",
-    //   more: "ver mas..",
-    // },
-  ]);
-
+  const [credits, setCredit] = useState([]);
   const [rows, setRow] = useState([]);
   const [client, setClient] = useState("");
 
@@ -70,7 +32,6 @@ const Credits = () => {
         let nombre = item.nameCostumer;
 
         if (nombre.indexOf(client) != -1) {
-
           array.push(item);
         }
       });
@@ -84,17 +45,17 @@ const Credits = () => {
     filter();
   }, [client]);
 
-
   return (
     <>
-      <div className="w-75 h-100">
-        <div className="h-100 w-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="h-100 w-100 d-flex flex-column align-items-center justify-content-center">
+        <h1 className="w-100 text-center text-uppercase">lista de creditos</h1>
+        <div className="w-100 d-flex px-3">
           <div
-            className="w-100 d-flex flex-column align-items-center overflow-auto p-4 shadow-lg rounded-3"
+            className="w-75 d-flex flex-column align-items-center overflow-auto shadow-md border rounded-3"
             style={{ height: "475px" }}
           >
             <div
-              className="d-flex justify-content-between w-100 border border-1"
+              className="d-flex justify-content-between w-100"
               style={{ height: "15%" }}
             >
               <div className="w-50 h-100">
@@ -133,6 +94,7 @@ const Credits = () => {
                         <td>{row.idSale}</td>
                         <td>{row.debtTotal}</td>
                         <td>{row.debtRemaining}</td>
+                        <td>{moment(row.date).format("LL")}</td>
                         <td>detalles...</td>
                       </tr>
                     );
@@ -140,6 +102,9 @@ const Credits = () => {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className="w-25">
+            <MenuCredits/>
           </div>
         </div>
       </div>

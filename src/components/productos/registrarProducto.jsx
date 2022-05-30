@@ -35,61 +35,66 @@ const Registro = () => {
 
   return (
     <>
-      <div className="d-flex flex-column align-items-center w-100 ">
-        <h1 className="text-center mt-4">Registro de producto</h1>
-        <div className="w-100">
-          <MenuButtons />
-        </div>
-        <div className="d-flex justify-content-center align-items-center flex-column p-3 rounded-3 shadow-lg w-50 mb-5">
-          <form onSubmit={handleSubmit(onSubmit)} className>
-            <div className="mb-3">
-              <label htmlFor="userInput" className="form-label rounded-3">
-                Codigo
-              </label>
-              <input
-                {...register("idProduct", { required: true })}
-                type="number"
-                className="form-control"
-                id="userInput"
-              />
-              <p className="text-danger">{errors.codigo?.message}</p>
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="userInput" className="form-label rounded-3">
-                Nombre
-              </label>
-              <input
-                type="text"
-                {...register("description", { required: true })}
-                className="form-control"
-                id="userInput"
-              />
-              <p className="text-danger">{errors.desc?.message}</p>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">
-                Inventario inicial
-                <ChatbubbleEllipsesOutline
-                  color={"#00000"}
-                  height="24px"
-                  width="24px"
-                  className='align-bottom ms-2'
+      <div className="d-flex flex-column align-items-center mb-1 px-3 w-100">
+        <h1 className="text-center">Registro de producto</h1>
+        <div className="w-100 d-flex">
+          <div
+            className="d-flex justify-content-center align-items-center flex-column border rounded-3 shadow-md w-75"
+            style={{ height: "475px" }}
+          >
+            <form onSubmit={handleSubmit(onSubmit)} className="border p-5 rounded">
+              <div className="mb-3">
+                <label htmlFor="userInput" className="form-label rounded-3">
+                  Codigo
+                </label>
+                <input
+                  {...register("idProduct", { required: true })}
+                  type="number"
+                  className="form-control"
+                  id="userInput"
                 />
-              </label>
-              <input type="number" className="form-control" />
-            </div>
+                <p className="text-danger">{errors.codigo?.message}</p>
+              </div>
 
-            <div className="h-25 mt-4 d-flex">
-              <button
-                type="submit"
-                class="my-auto btn btn-dark d-block mx-auto"
-              >
-                Registrar
-              </button>
-            </div>
-          </form>
+              <div className="mb-3">
+                <label htmlFor="userInput" className="form-label rounded-3">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  {...register("description", { required: true })}
+                  className="form-control"
+                  id="userInput"
+                />
+                <p className="text-danger">{errors.desc?.message}</p>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">
+                  Inventario inicial
+                  <ChatbubbleEllipsesOutline
+                    color={"#00000"}
+                    height="24px"
+                    width="24px"
+                    className="align-bottom ms-2"
+                  />
+                </label>
+                <input type="number" className="form-control" />
+              </div>
+
+              <div className="h-25 mt-4 d-flex">
+                <button
+                  type="submit"
+                  class="my-auto btn btn-dark d-block mx-auto"
+                >
+                  Registrar
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="w-25">
+            <MenuButtons />
+          </div>
         </div>
       </div>
     </>

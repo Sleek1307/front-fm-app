@@ -5,41 +5,28 @@ import { ClipboardOutline, BagAddOutline } from "react-ionicons";
 const ButtonsSale = () => {
   return (
     <>
-      <div className="d-flex justify-content-around my-5">
-        <div className="col-md-4 col-12 d-flex justify-content-center menuBtn">
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-body">
-              <h5 class="card-title fw-bolder">Lista de ventas</h5>
-              <div className="text-center">
-                <ClipboardOutline width={'150px'} height={'150px'}/>
-              </div>
-              <hr />
-              <Link
-                to="/ventas"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Listar
-              </Link>
-            </div>
+      <div className="w-100 h-100 p-2 ms-2 border shadow-md rounded-3">
+        <Link to="/ventas" className="m-0 text-decoration-none text-dark">
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3 border-end"
+            style={{ height: "50px" }}
+          >
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-list-ol"></i>
+            Ventas
           </div>
-        </div>
-        <div className="col-md-4 col-12 d-flex justify-content-center menuBtn">
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-body">
-              <h5 class="card-title fw-bolder">Registro de ventas</h5>
-              <div className="text-center">
-                <BagAddOutline width={'150px'} height={'150px'}/>
-              </div>
-              <hr />
-              <Link
-                to="/ventas/registro"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Registrar
-              </Link>
-            </div>
+        </Link>
+        <Link
+          to="/ventas/registro"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3 border-end"
+            style={{ height: "50px" }}
+          >
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-plus"></i>
+            Nueva venta
           </div>
-        </div>
+        </Link>
       </div>
     </>
   );

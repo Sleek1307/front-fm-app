@@ -1,7 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { getAllProducts } from "../../services/products.services";
 import { getAllProviders } from "../../services/providers.services";
@@ -45,7 +42,10 @@ const RegistrarCompra = () => {
 
   const requirePurchase = () => {
     if (rows.length === 0) {
-      return [false, "No has ingresado ningun producto"];
+      return [
+        false,
+        "No has ingresado ningún elemento a la tabla de productos",
+      ];
     }
     if (purchase.provider === false) {
       return [false, "Falta el id del proveedor"];
@@ -64,18 +64,17 @@ const RegistrarCompra = () => {
       setRow({
         ...row,
         [nameInput]: valueInput,
-        idProduct: valueInput.split(' - ')[0]
+        idProduct: valueInput.split(" - ")[0],
       });
-    }else{
+    } else {
       setRow({
         ...row,
         [nameInput]: valueInput,
-      })
+      });
     }
   };
 
   const handleChangePurchase = (e) => {
-
     setPurchase({
       ...purchase,
       [e.target.name]: e.target.value,
@@ -91,7 +90,7 @@ const RegistrarCompra = () => {
         });
 
         if (flag[0]) {
-          alert("El elemento ya está ingresado en la tabla de productos");
+          alert("El elemento ya existe en la tabla de productos");
           e.preventDefault();
           return;
         }
@@ -115,7 +114,7 @@ const RegistrarCompra = () => {
   const sumCost = () => {
     let c = 0;
     rows.map((e) => {
-      c += e.unitValue  * e.amount;
+      c += e.unitValue * e.amount;
     });
     return c;
   };
@@ -132,7 +131,7 @@ const RegistrarCompra = () => {
         date: purchase.date,
       };
       e.preventDefault();
-      const {data} = await createPurchase(pedido);
+      const { data } = await createPurchase(pedido);
       alert(data.text);
     } else {
       alert(require[1]);
@@ -165,155 +164,157 @@ const RegistrarCompra = () => {
 
   return (
     <>
-      <div className="w-100 d-flex flex-column align-items-center">
-        <div className="w-75">
-          <h1 className="text-center mt-4">Registrar Compra</h1>
-        </div>
+      <div className="w-100 d-flex flex-column align-items-center justify-content-center px-3 mb-1">
+        <h1 className="text-center text-uppercase">Registrar Compra</h1>
 
-        <div className="w-75">
-          <MenuPurchase />
-        </div>
+        <div className="d-flex w-100">
+          <div
+            className="p-2 border rounded-3 w-75 shadow-md"
+            style={{ height: "475px" }}
+          >
+            <div className="w-100 h-100 rounded-3 p-2 border overflow-hidden">
+              <table className="table p-1 border overflow-auto">
+                <thead>
+                  <tr className="text-center">
+                    <th></th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Valor unitario</th>
+                    <th>Valor total</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => {
+                    return (
+                      <tr className="text-center align-text-bottom">
+                        <th>{row.key}</th>
+                        <th>{row.nameProduct}</th>
+                        <th>{row.amount}</th>
+                        <th>{row.unitValue}</th>
+                        <th>{row.unitValue * row.amount}</th>
+                        <th>
+                          <button
+                            className="btn btn-light btn-outline-danger"
+                            value={row.key}
+                            onClick={deleteProduct}
+                          >
+                            Eliminar
+                          </button>
+                        </th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
 
-        <div className="w-75 mb-5 p-2 rounded-3 shadow-lg">
-          <div className="border rounded-3 p-2">
-            <table className="table p-1 border  overflow-auto">
-              <thead>
-                <tr className="text-center">
-                  <th></th>
-                  <th>Producto</th>
-                  <th>Cantidad</th>
-                  <th>Valor unitario</th>
-                  <th>Valor total</th>
-                  <th>Eliminar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => {
-                  return (
-                    <tr className="text-center align-text-bottom">
-                      <th>{row.key}</th>
-                      <th>{row.nameProduct}</th>
-                      <th>{row.amount}</th>
-                      <th>{row.unitValue}</th>
-                      <th>{row.unitValue * row.amount}</th>
-                      <th>
-                        <button
-                          className="btn btn-light btn-outline-danger"
-                          value={row.key}
-                          onClick={deleteProduct}
-                        >
-                          Eliminar
-                        </button>
-                      </th>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+              <div className="d-flex flex-column align-items-center">
+                <form>
+                  <div className="d-flex">
+                    <div className="mb-3 mx-1 w-50">
+                      <label className="form-label">Productos:</label>
+                      <select
+                        name="nameProduct"
+                        className="dropdown-menu-end dropdown-header w-100 fs-6"
+                        onChange={handleChangeRow}
+                        value={row.nameProduct}
+                      >
+                        <option value={false} selected>
+                          Productos
+                        </option>
+                        {products.map((p) => {
+                          return (
+                            <option
+                              value={`${p.idProduct} - ${p.description}`}
+                            >{`${p.idProduct} - ${p.description}`}</option>
+                          );
+                        })}
+                      </select>
+                    </div>
 
-            <div className="d-flex flex-column align-items-center">
-              <form>
-                <div className="d-flex">
-                  <div className="mb-3 mx-1 w-50">
-                    <label className="form-label">Productos:</label>
-                    <select
-                      name="nameProduct"
-                      className="dropdown-menu-end dropdown-header w-100 fs-6"
-                      onChange={handleChangeRow}
-                      value={row.nameProduct}
+                    <div className="mb-3 mx-1 w-50">
+                      <label className="form-label">Valor unitario:</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="unitValue"
+                        value={row.unitValue}
+                        onChange={handleChangeRow}
+                      />
+                    </div>
+
+                    <div className="mb-3 mx-1 w-25">
+                      <label className="form-label">Cantidad:</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="amount"
+                        value={row.amount}
+                        onChange={handleChangeRow}
+                      />
+                    </div>
+                  </div>
+                  <div className="d-flex mb-3 justify-content-center">
+                    <button
+                      type="submit"
+                      onClick={handleAdd}
+                      className="btn btn-dark btnP"
                     >
-                      <option value={false} selected>
-                        Productos
-                      </option>
-                      {products.map((p) => {
+                      Agregar
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <hr className="w-100" />
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="mb-3 col-12 col-md-6">
+                    <label htmlFor="userInput" className="form-label rounded-3">
+                      Proveedor
+                    </label>
+                    <select
+                      name="idProvider"
+                      className="dropdown-menu-end dropdown-header fs-6 w-100"
+                      onChange={handleChangePurchase}
+                    >
+                      <option value={false}>Proveedores</option>
+                      {providers.map((e) => {
                         return (
                           <option
-                            value={`${p.idProduct} - ${p.description}`}
-                          >{`${p.idProduct} - ${p.description}`}</option>
+                            value={e.idProvider}
+                          >{`${e.idProvider} - ${e.nameProvider}`}</option>
                         );
                       })}
                     </select>
                   </div>
 
-                  <div className="mb-3 mx-1 w-50">
-                    <label className="form-label">Valor unitario:</label>
+                  <div className="mb-3 col-12 col-md-6">
+                    <label htmlFor="userInput" className="form-label rounded-3">
+                      Fecha:
+                    </label>
                     <input
-                      type="number"
+                      type="date"
+                      name="date"
                       className="form-control"
-                      name="unitValue"
-                      value={row.unitValue}
-                      onChange={handleChangeRow}
-                    />
-                  </div>
-
-                  <div className="mb-3 mx-1 w-25">
-                    <label className="form-label">Cantidad:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      name="amount"
-                      value={row.amount}
-                      onChange={handleChangeRow}
+                      onChange={handleChangePurchase}
                     />
                   </div>
                 </div>
-                <div className="d-flex mb-3 justify-content-center">
+
+                <div>
                   <button
                     type="submit"
-                    onClick={handleAdd}
-                    className="btn btn-dark btnP"
+                    className="btn btn-dark btnP d-block mx-auto"
                   >
-                    Agregar
+                    Registrar:
                   </button>
                 </div>
               </form>
             </div>
-
-            <hr className="w-100" />
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="mb-3 col-12 col-md-6">
-                  <label htmlFor="userInput" className="form-label rounded-3">
-                    Proveedor
-                  </label>
-                  <select
-                    name="idProvider"
-                    className="dropdown-menu-end dropdown-header fs-6 w-100"
-                    onChange={handleChangePurchase}
-                  >
-                    <option value={false}>Proveedores</option>
-                    {providers.map((e) => {
-                      return (
-                        <option
-                          value={e.idProvider}
-                        >{`${e.idProvider} - ${e.nameProvider}`}</option>
-                      );
-                    })}
-                  </select>
-                </div>
-
-                <div className="mb-3 col-12 col-md-6">
-                  <label htmlFor="userInput" className="form-label rounded-3">
-                    Fecha:
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    className="form-control"
-                    onChange={handleChangePurchase}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-dark btnP d-block mx-auto"
-                >
-                  Registrar:
-                </button>
-              </div>
-            </form>
+          </div>
+          <div className="w-25">
+            <MenuPurchase />
           </div>
         </div>
       </div>

@@ -150,36 +150,38 @@ const Search = () => {
 
   return (
     <>
-      <div className="d-flex flex-column align-items-center w-100">
-        <h1 className="text-center mt-4">Gestion de productos</h1>
-        <div className="w-100">
-          <MenuButtons />
-        </div>
-        <div className="d-flex flex-column shadow-lg rounded-3 p-1 w-50 mb-5">
-          <div>
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="ps-4 d-flex align-items-center w-100 m-0 border-bottom pb-2">
-                <div className="w-25">
-                  <label htmlFor="idProduct" className="form-label">
-                    Codigo
-                  </label>
-                  <input
-                    {...register("idProduct", { required: true })}
-                    type="text"
-                    className="form-control w-100 mb-2"
-                  />
+      <div className="d-flex flex-column align-items-center w-100 px-2 mb-1">
+        <h1 className="text-center">Gestion de productos</h1>
+        <div className="w-100 d-flex">
+          <div className="d-flex flex-column shadow-md rounded-3 p-1 w-75 border" style={{height: '475px'}}>
+            <div>
+              <form action="" onSubmit={handleSubmit(onSubmit)}>
+                <div className="ps-4 d-flex align-items-center w-100 m-0 border-bottom pb-1">
+                  <div className="w-25 h-100 d-flex align-items-center">
+                    <input
+                      {...register("idProduct", { required: true })}
+                      type="text"
+                      className="form-control w-100 me-3"
+                    />
+                  </div>
+                  <div className="w-75 h-100 d-flex align-items-center">
+                    <button
+                      className="btn btnP btn-dark"
+                      type="submit"
+                    >
+                      Buscar
+                    </button>
+                  </div>
                 </div>
-                <div className="w-75">
-                  <button className="btn btnP btn-dark mt-4 ms-4" type="submit">
-                    Buscar
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
 
-          <div className="h-100">
-            <Update data={product} />
+            <div className="h-100">
+              <Update data={product} />
+            </div>
+          </div>
+          <div>
+            <MenuButtons />
           </div>
         </div>
       </div>

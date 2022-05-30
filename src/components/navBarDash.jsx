@@ -11,10 +11,10 @@ const showToggler = () =>{
 
 const NavDash = () => {
   return (
-    <section className="nav-container d-flex w-100 p-0 bg-light border-bottom" style={{ height: "80px"}}>
+    <section className="nav-container d-flex w-100 p-0 bg-light border-bottom" style={{ height: "60px"}}>
       <div className="d-flex justify-content-between align-items-center w-100">
         <div className="ms-3">
-          <img id='logo' src="http://localhost:3000/logo192.png" alt="" style={{ height: '70px'}} />
+          <img id='logo' src="http://localhost:3000/logo192.png" alt="" style={{ height: '50px'}} />
         </div>
         <div
           className="navbar"

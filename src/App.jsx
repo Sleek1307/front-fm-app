@@ -20,6 +20,7 @@ import RegistroProveedores from "./components/proveedores/registrarProveedores";
 import RegistrarCompra from "./components/compras/registrarCompra";
 import ListCompra from "./components/compras/listCompras";
 import Credits from "./components/credits/credits";
+import CreditsManagement from "./components/credits/credits_management";
 import { Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
 
@@ -27,8 +28,8 @@ function App() {
   return (
     <Fragment>
       <Routes>
-        <Route path="/" element={<Layout page={<Home/>}/>} />
-        <Route path="/inicio" element={<Layout page={<Home/>}/>} />
+        <Route path="/" element={<Layout page={<Home />} />} />
+        <Route path="/inicio" element={<Layout page={<Home />} />} />
         <Route path="/compras" element={<Layout page={<ListCompra />} />} />
         <Route
           path="/compras/registro"
@@ -42,35 +43,26 @@ function App() {
           path="/proveedores/registro"
           element={<Layout page={<RegistroProveedores />} />}
         />
-        <Route
-          path="/inventario"
-          element={<Layout page={<Inventario />} />}
-        />
-        <Route
-          path="/productos"
-          element={<Layout page={<Lista />}/>}
-        />
+        <Route path="/productos" element={<Layout page={<Lista />} />} />
         <Route
           path="/productos/registro"
-          element={<Layout page={<Registro />}/>}
+          element={<Layout page={<Registro />} />}
         />
         <Route
           path="/productos/gestion"
-          element={<Layout page={<Buscar />}/>}
+          element={<Layout page={<Buscar />} />}
         />
-        <Route
-          path="/ventas"
-          element={<Layout page={<ListVentas />}/>}
-        />
+        <Route 
+          path="productos/inventario" 
+          element={<Layout page={<Inventario />} />} />
+        <Route path="/ventas" element={<Layout page={<ListVentas />} />} />
         <Route
           path="/ventas/registro"
-          element={<Layout page={<RegistrarVenta />}/>}
+          element={<Layout page={<RegistrarVenta />} />}
         />
         <Route
           path="/clientes"
-          element={
-            <Layout page={<ListCostumer />} menu={<ButtonsClients />} />
-          }
+          element={<Layout page={<ListCostumer />} menu={<ButtonsClients />} />}
         />
         <Route
           path="/clientes/registro"
@@ -84,12 +76,11 @@ function App() {
             <Layout page={<SearchCostumers />} menu={<ButtonsClients />} />
           }
         />
+        <Route path="/creditos" element={<Layout page={<Credits />} />} />
         <Route
-          path="/creditos"
-          element={
-            <Layout page={<Credits/>}/>
-          }
-        />
+          path="/creditos/gestion"
+          element={<Layout page={<CreditsManagement />} />}
+        ></Route>
       </Routes>
     </Fragment>
   );

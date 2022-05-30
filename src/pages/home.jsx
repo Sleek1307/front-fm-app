@@ -40,7 +40,7 @@ const Home = () => {
 
         <div className="grid-container">
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Inventario</h5>
                 <div className="text-center">
@@ -49,14 +49,14 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/inventario" class="btn btnP btn-dark">
+                <Link to="/inventario" class="btn btnP btn-outline-dark">
                   Inventario
                 </Link>
               </div>
             </div>
           </div>
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Productos</h5>
                 <div className="text-center">
@@ -65,7 +65,7 @@ const Home = () => {
               </div>
               <div class="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/productos" class="btn btnP btn-dark">
+                <Link to="/productos" class="btn btnP btn-outline-dark">
                   Productos
                 </Link>
               </div>
@@ -73,7 +73,7 @@ const Home = () => {
           </div>
 
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Ventas</h5>
                 <div className="text-center">
@@ -82,14 +82,14 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/ventas" class="btn btnP btn-dark">
+                <Link to="/ventas" class="btn btnP btn-outline-dark">
                   Ventas
                 </Link>
               </div>
             </div>
           </div>
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Clientes</h5>
 
@@ -99,14 +99,14 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/clientes" class="btn btnP btn-dark">
+                <Link to="/clientes" class="btn btnP btn-outline-dark">
                   Clientes
                 </Link>
               </div>
             </div>
           </div>
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Proveedores</h5>
 
@@ -116,7 +116,7 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/proveedores" class="btn btnP btn-dark">
+                <Link to="/proveedores" class="btn btnP btn-outline-dark">
                   Proveedores
                 </Link>
               </div>
@@ -124,7 +124,7 @@ const Home = () => {
           </div>
           {/* Primera fila */}
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <img class="card-img-top" />
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Creditos</h5>
@@ -135,14 +135,14 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/creditos" class="btn btnP btn-dark">
+                <Link to="/creditos" class="btn btnP btn-outline-dark">
                   Creditos
                 </Link>
               </div>
             </div>
           </div>
           <div className="grid-item">
-            <div class="card" style={{ width: "15rem" }}>
+            <div class="card card-up" style={{ width: "15rem" }}>
               <img class="card-img-top" />
               <div className="my-2 ms-3">
                 <h5 class="card-title fw-bolder">Compras</h5>
@@ -152,7 +152,7 @@ const Home = () => {
               </div>
               <div className="card-body">
                 <hr className="m-0 mb-2" />
-                <Link to="/compras" className="btn btnP btn-dark">
+                <Link to="/compras" className="btn btnP btn-outline-dark">
                   Compras
                 </Link>
               </div>

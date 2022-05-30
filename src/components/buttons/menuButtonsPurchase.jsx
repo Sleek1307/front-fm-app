@@ -1,45 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {ClipboardOutline, BagAddOutline,} from "react-ionicons";
 
 const MenuPurchase = () => {
   return (
-    <div className="d-flex justify-content-around my-4">
-      <div className="col-sm-4 col-12 d-flex justify-content-center">
-        <div className="card" style={{ width: "18rem" }}>
-          <div className="card-body">
-            <h5 className="card-title fw-bolder">Lista de compras</h5>
-            <div className="text-center">
-              <ClipboardOutline width={"150px"} height={"150px"} />
-            </div>
-            <hr className="w-100" />
-            <Link
-              to="/compras"
-              className="text-decoration-none btn btnP btn-dark"
-            >
-              Compras
-            </Link>
-          </div>
+    <div className="w-100 h-100 p-2 ms-2 h-100 border shadow-md rounded-3">
+      <Link to="/compras" className="m-0 text-decoration-none text-dark">
+        <div
+          className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3 border-end"
+          style={{ height: "50px" }}
+        >
+          <i class="bg-light fs-2 px-2 me-3 border-end bi bi-list-ol"></i>
+          Compras
         </div>
-      </div>
+      </Link>
 
-      <div className="col-sm-4 col-12 d-flex justify-content-center menuBtn">
-        <div className="card" style={{ width: "18rem" }}>
-          <div className="card-body">
-            <h5 className="card-title fw-bolder text-truncate|">Registro de compras</h5>
-            <div className="text-center">
-              <BagAddOutline width={"150px"} height={"150px"} />
-            </div>
-            <hr className="w-100" />
-            <Link
-              to="/compras/registro "
-              className="text-decoration-none btn btnP btn-dark"
-            >
-              Registrar compra
-            </Link>
-          </div>
+      <Link
+        to="/compras/registro"
+        className="m-0 text-decoration-none text-dark"
+      >
+        <div
+          className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3 border-end"
+          style={{ height: "50px" }}
+        >
+          <i class="bg-light fs-2 px-2 me-3 border-end bi bi-search"></i>
+          Registrar compra
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

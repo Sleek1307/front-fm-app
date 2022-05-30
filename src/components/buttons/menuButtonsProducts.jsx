@@ -1,62 +1,55 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BagAddOutline, ClipboardOutline, SearchOutline } from "react-ionicons";
 
 const MenuButtons = () => {
   return (
     <>
-      <div className="d-flex justify-content-around my-4">
-        <div className="col-sm-4 col-12 d-flex justify-content-center">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title fw-bolder">Lista de productos</h5>
-              <div className="text-center">
-                <ClipboardOutline width={"150px"} height={"150px"} />
-              </div>
-              <hr className="w-100" />
-              <Link
-                to="/productos"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Listar
-              </Link>
-            </div>
+      <div className="w-100 h-100 p-2 ms-2 border shadow-md rounded-3">
+        <Link to="/productos" className="m-0 text-decoration-none text-dark">
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3"
+            style={{ height: "50px" }}
+          >
+            <i className="bg-light fs-2 px-2 me-3 border-end bi bi-list-ol"></i>
+            Lista de productos
           </div>
-        </div>
-        <div className="col-sm-4 col-12 d-flex justify-content-center menuBtn">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title fw-bolder">Registro de productos</h5>
-              <div className="text-center">
-                <BagAddOutline width={"150px"} height={"150px"} />
-              </div>
-              <hr className="w-100"/>
-              <Link
-                to="/productos/registro"
-                className="text-decoration-none btnP btn btn-dark"
-              >
-                Registrar
-              </Link>
-            </div>
+        </Link>
+        <Link
+          to="/productos/registro"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3"
+            style={{ height: "50px" }}
+          >
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-bag-plus"></i>
+            Registro de productos
           </div>
-        </div>
-        <div className="col-sm-4 col-12 d-flex justify-content-center menuBtn">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title fw-bolder">Busqueda de productos</h5>
-              <div className="text-center">
-                <SearchOutline width={"150px"} height={"150px"} />
-              </div>
-              <hr className="w-100"/>
-              <Link
-                to="/productos/gestion"
-                className="text-decoration-none btn btnP btn-dark"
-              >
-                Buscar
-              </Link>
-            </div>
+        </Link>
+        <Link
+          to="/productos/inventario"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3"
+            style={{ height: "50px" }}
+          >
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-clipboard"></i>
+            Inventario
           </div>
-        </div>
+        </Link>
+        <Link
+          to="/productos/gestion"
+          className="m-0 text-decoration-none text-dark"
+        >
+          <div
+            className="pointer w-100 border my-2 fs-5 d-flex align-items-center rounded-3"
+            style={{ height: "50px" }}
+          >
+            <i class="bg-light fs-2 px-2 me-3 border-end bi bi-search"></i>
+            Busqueda de productos
+          </div>
+        </Link>
       </div>
     </>
   );
